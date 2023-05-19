@@ -1,43 +1,32 @@
-import sys
 import os
 from pathlib import Path
 import glob
 import shutil
-import pathlib
 
 ## step 1 : change directory
-# os.chdir('/users/SANDRA/Downloads')
-# cur_dir = os.getcwd()
+os.chdir('/path/to/Downloads')
+cur_dir = os.getcwd()
 
 ## step 2 : list all the files in the directory
-# for entry in os.listdir(cur_dir):
-#     if os.path.isfile(os.path.join(cur_dir, entry)):
-#         print(entry)
+for entry in os.listdir(cur_dir):
+    if os.path.isfile(os.path.join(cur_dir, entry)):
+        print(entry)
 
 ## step 3 : create new directory/folder
-# p = Path('example_directory')
-# p.mkdir(exist_ok=True)
+p = Path('example_directory')
+p.mkdir(exist_ok=True) #exist_ok checks if dir already exits
 
-# p2 = Path('excecutables')
-# p2.mkdir(exist_ok=True)
-# for name in glob.glob('*.exe'):
-#     dst = 'excecutables'
-#     shutil.move(name, dst)
-#     # print(name)
-# print("All .exe files moved")
-
-## step 4 : Get .txt files
-# print("All pdf files")
-# for f_name in os.listdir(cur_dir):
-#      if f_name.endswith('.pdf'):
-#         #  print(f_name)
-#         pass
+## step 4 : move all(*) the files that ends with .txt 
+for name in glob.glob('*.txt'):
+    destination = 'example_directory'
+    shutil.move(name, destination)
+    # print(name)
+print("All .exe files moved to {}".format(destination))
 
 
-os.chdir('/users/SANDRA/Downloads')
+## step 5: combining above steps
+os.chdir('/path/to/downloads')
 cur_dir = os.getcwd()
-# dir = pathlib.Path(cur_dir)
-
 
 direc_ = {"excecutables"             :"*.exe",
           "pdf"                      :"*.pdf",
@@ -55,6 +44,7 @@ for path in direc_.keys():
         shutil.move(name,dst)
         print(name)
     print("===============================================")
+
         
 
 
